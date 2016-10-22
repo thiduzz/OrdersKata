@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html ng-app="contabilizeiApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contabilizei</title>
+
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="css/styles.css" rel="stylesheet"/>
+	<link rel="stylesheet"  href="bower_vendors/font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/contabilizei.css"/>
+	<script src="js/lumino.glyphs.js"></script>
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Ativar Navegação</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>Contabilizei</span>Teste</a>
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="col-sm-8 col-sm-offset-2 col-lg-8 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home">
+							<use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">Teste</li>
+			</ol>
+		</div>
+		<!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Teste</h1>
+			</div>
+		</div>
+		<!--/.row-->
+
+		<div class="row"  ng-controller="AppStatusController as appStatus">
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="panel panel-blue panel-widget ">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<svg class="glyph stroked bag">
+								<use xlink:href="#stroked-bag"></use></svg>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">{{appStatus.count_orders}}</div>
+							<div class="text-muted">Orders</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="panel panel-orange panel-widget">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<svg class="glyph stroked tag">
+								<use xlink:href="#stroked-tag"></use></svg>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">{{appStatus.count_products}}</div>
+							<div class="text-muted">Products</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<div class="panel panel-teal panel-widget">
+					<div class="row no-padding">
+						<div class="col-sm-3 col-lg-5 widget-left">
+							<svg class="glyph stroked male-user">
+								<use xlink:href="#stroked-male-user"></use></svg>
+						</div>
+						<div class="col-sm-9 col-lg-7 widget-right">
+							<div class="large">{{appStatus.count_customers}}</div>
+							<div class="text-muted">Customers</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+
+		<div class="row" ng-controller="OrderCreationController as creationForm">
+			<div class="col-lg-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">New Order</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group row">
+						        	<label class="col-sm-3 control-label label-lg">Customer</label>
+							        <div class="col-sm-9">
+							        	<select ng-model="creationForm.selected_customer"  class="form-control" ng-change="creationForm.selectCustomer()">
+							        		<option value="-1" disabled="disabled" selected="">Select</option>
+							        		<option value="{{$index}}" ng-repeat="option_customer in creationForm.customers">{{ option_customer.properties.name }}</option>
+							        	</select>
+							        	<!--
+							          <ui-select ng-model="creationForm.customer" theme="bootstrap">
+							            <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}</ui-select-match>
+							            <ui-select-choices repeat="item in ctrl.people | filter: $select.search">
+							              <div ng-bind-html="item.name | highlight: $select.search"></div>
+							              <small ng-bind-html="item.email | highlight: $select.search"></small>
+							            </ui-select-choices>
+							          </ui-select>
+							          -->
+							        </div>
+						      	</div>
+							    <div class="form-group row" ng-hide="creationForm.customer == null">
+							    	<label class="col-sm-3 control-label label-lg">CPF/CNPJ</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabed" readonly="readonly" ng-model="creationForm.customer.properties.identification">
+									</div>
+								</div>
+							    <div class="form-group row" ng-hide="creationForm.customer == null">
+							    	<label class="col-sm-3 control-label label-lg">Phone</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabed" readonly="readonly" ng-model="creationForm.customer.properties.phone">
+									</div>
+								</div>
+							    <div class="form-group row" ng-hide="creationForm.customer == null">
+							    	<label class="col-sm-3 control-label label-lg">E-mail</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabed" readonly="readonly" ng-model="creationForm.customer.properties.email">
+									</div>
+								</div>
+						      	<div class="col-lg-12 bp-20">
+						      		<h3>Total Ammount: {{ creationForm.cart_total() | currency : 'R$ ' : 2 }}</h3>
+						      	</div>
+							</div>
+							<div class="col-lg-6">
+							<ul class="todo-list">
+								<li class="todo-list-item" ng-repeat="cart_item in creationForm.cart">
+									<div class="checkbox">
+										<input type="number" min="0" class="form-control inline-input" ng-model="cart_item.qty">
+										<label for="checkbox">{{ cart_item.product.properties.description }} </label>
+									</div>
+									<div class="pull-right action-buttons lg-height">
+										<a class="price">{{ cart_item.product.properties.unit_value * cart_item.qty  | currency : 'R$ ' : 2 }} </a>
+										<a href="javascript:;" class="trash" ng-click="creationForm.removeFromCart($index)"><svg class="glyph stroked trash"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-trash"></use></svg></a>
+									</div>
+								</li>
+							</ul>
+							</div>
+						</div>
+						<div class="row">
+						<div class="col-lg-12"><a style="margin: 0 auto;" ng-class="{'disabled': creationForm.validateCart() == false }" ng-click="creationForm.storeOrder()" href="#" class="btn btn-primary"><span ng-hide="creationForm.submitting == false"><i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;Wait...</span><span ng-hide="creationForm.submitting == true">Create order!</span></a></div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">Products</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper product-list">
+							<ul>
+								<li ng-click="creationForm.addToCart(product)" class="left clearfix" ng-repeat="product in creationForm.products"><span class="chat-img pull-left"  >
+										<img src="http://placehold.it/50/30a5ff/fff"
+										alt="Product Avatar" class="img-circle" />
+								</span>
+									<div class="product-body clearfix">
+										<div class="header">
+											<strong class="primary-font">{{ product.properties.description }}</strong> <small
+												class="text-muted">#{{ product.properties.code }}</small>
+										</div>
+										<p>{{ product.properties.unit_value | currency : 'R$ ' : 2 }}</p>
+									</div></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+
+		<div class="row"  ng-controller="OrdersController as currentOrders">
+
+			<div class="col-md-4">
+
+				<div class="panel panel-blue">
+					<div class="panel-heading dark-overlay">
+						<svg class="glyph stroked clipboard-with-paper">
+							<use xlink:href="#stroked-clipboard-with-paper"></use></svg>
+						Orders
+					</div>
+					<div class="panel-body">
+						<ul class="todo-list">
+							<li class="todo-list-item" ng-repeat="order in currentOrders.orders">
+								<div class="checkbox"><label for="checkbox">{{ order.properties.code }} | {{ order.properties.value | currency : 'R$ ' : 2 }}</label>
+								</div>
+								<div class="pull-right action-buttons">
+									<a href="javascript:;" ng-click="currentOrders.selectOrder(order)" ><svg class="glyph stroked pencil">
+											<use xlink:href="#stroked-pencil"></use></svg></a> 
+									<a href="javascript:;" ng-click="currentOrders.deleteOrder(order)" class="trash"><svg class="glyph stroked trash">
+											<use xlink:href="#stroked-trash"></use></svg></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<!--/.col-->
+			<div class="col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">Edit Order <span ng-show="currentOrders.selected_order != null">#{{ currentOrders.selected_order.properties.code }}</span></div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<div class="row" ng-show="currentOrders.selected_order != null">
+							<div class="col-lg-6">
+							    <div class="form-group row" ng-hide="currentOrders.selected_order == null">
+							    	<label class="col-sm-3 control-label label-lg">Customer</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabled" readonly="readonly" ng-model="currentOrders.selected_order.properties.customer.properties.name">
+									</div>
+								</div>
+							    <div class="form-group row" ng-hide="currentOrders.selected_order == null">
+							    	<label class="col-sm-3 control-label label-lg">CPF/CNPJ</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabled" readonly="readonly" ng-model="currentOrders.selected_order.properties.customer.properties.identification">
+									</div>
+								</div>
+							    <div class="form-group row" ng-hide="currentOrders.selected_order == null">
+							    	<label class="col-sm-3 control-label label-lg">Phone</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabled" readonly="readonly" ng-model="currentOrders.selected_order.properties.customer.properties.phone">
+									</div>
+								</div>
+							    <div class="form-group row" ng-hide="currentOrders.selected_order == null">
+							    	<label class="col-sm-3 control-label label-lg">E-mail</label>
+								    <div class="col-sm-9">
+										<input class="form-control disabled" readonly="readonly" ng-model="currentOrders.selected_order.properties.customer.properties.email">
+									</div>
+								</div>
+						      	<div class="col-lg-12 bp-20">
+						      		<h3>Total Ammount: {{ currentOrders.cart_total() | currency : 'R$ ' : 2 }}</h3>
+						      	</div>
+							</div>
+							<div class="col-lg-6">
+							<ul class="todo-list">
+								<li class="todo-list-item" ng-repeat="cart_item in currentOrders.selected_order.properties.order_items">
+									<div class="checkbox">
+										<input type="number" min="0" class="form-control inline-input" ng-model="cart_item.qty">
+										<label for="checkbox">{{ cart_item.product.properties.description }} </label>
+									</div>
+									<div class="pull-right action-buttons lg-height">
+										<a class="price price-line">{{ cart_item.unit_value * cart_item.qty  | currency : 'R$ ' : 2 }} </a>
+									</div>
+								</li>
+							</ul>
+							</div>
+						</div>
+						<div class="row" ng-show="currentOrders.selected_order != null">
+						<div class="col-lg-12"><a style="margin: 0 auto;" ng-class="{'disabled': creationForm.validateCart() == false }" ng-click="currentOrders.updateOrder(currentOrders.selected_order)" href="javascript:;" class="btn btn-primary"><span ng-hide="currentOrders.submitting == false"><i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;Wait...</span><span ng-hide="currentOrders.submitting == true">Edit order!</span></a></div>
+						</div>
+						<div class="row" ng-show="currentOrders.selected_order == null">
+						<div class="col-lg-12">
+						<h4>You must select an order to start editing.</h4>
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!--/.col-->
+		</div>
+		<!--/.row-->
+	</div>
+	<!--/.main-->
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>	<script	src="bower_vendors/angular/angular.min.js"></script>
+	<script src="bower_vendors/angular-resource/angular-resource.min.js"></script>
+	<script	src="bower_vendors/angular-route/angular-route.min.js"></script>
+	<script	src="bower_vendors/sweetalert/dist/sweetalert.min.js"></script>
+	<link  rel="stylesheet" type="text/css" href="bower_vendors/sweetalert/dist/sweetalert.css"/>
+	<script src="js/contabilizei.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/teste-1.0-SNAPSHOT/WEB-INF/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/15.0/guava-15.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/objectify/objectify/5.1.5/objectify-5.1.5.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-1.0-sdk/1.9.42/appengine-api-1.0-sdk-1.9.42.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-endpoints/1.9.42/appengine-endpoints-1.9.42.jar"/>
+  <classpathentry kind="var" path="M2_REPO/jstl/jstl/1.2/jstl-1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/github/javafaker/javafaker/0.10/javafaker-0.10.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/github/mifmif/generex/1.0.1/generex-1.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/dk/brics/automaton/automaton/1.11-8/automaton-1.11-8.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/datanucleus/datanucleus-jodatime/4.1.2/datanucleus-jodatime-4.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/json/json/20160810/json-20160810.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.7/gson-2.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.9.42/appengine-testing-1.9.42.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-stubs/1.9.42/appengine-api-stubs-1.9.42.jar"/>
+</classpath>

@@ -1,0 +1,6 @@
+com\contabilizei\OrderBean.class
+com\contabilizei\Order.class
+com\contabilizei\Customer.class
+com\contabilizei\ConfigConstants.class
+com\contabilizei\OrdersAPI.class
+com\contabilizei\Product.class
